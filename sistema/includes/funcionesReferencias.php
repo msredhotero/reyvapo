@@ -49,33 +49,69 @@ function generarCodigoGarantia() {
 	return $nro;
 }
 
+function comprobar_email($email){
+   $mail_correcto = 0;
+   //compruebo unas cosas primeras
+   if ((strlen($email) >= 6) && (substr_count($email,"@") == 1) && (substr($email,0,1) != "@") && (substr($email,strlen($email)-1,1) != "@")){
+      if ((!strstr($email,"'")) && (!strstr($email,"\"")) && (!strstr($email,"\\")) && (!strstr($email,"\$")) && (!strstr($email," "))) {
+         //miro si tiene caracter .
+         if (substr_count($email,".")>= 1){
+            //obtengo la terminacion del dominio
+            $term_dom = substr(strrchr ($email, '.'),1);
+            //compruebo que la terminación del dominio sea correcta
+            if (strlen($term_dom)>1 && strlen($term_dom)<5 && (!strstr($term_dom,"@")) ){
+               //compruebo que lo de antes del dominio sea correcto
+               $antes_dom = substr($email,0,strlen($email) - strlen($term_dom) - 1);
+               $caracter_ult = substr($antes_dom,strlen($antes_dom)-1,1);
+               if ($caracter_ult != "@" && $caracter_ult != "."){
+                  $mail_correcto = 1;
+               }
+            }
+         }
+      }
+   }
+   if ($mail_correcto)
+      return 1;
+   else
+      return 0;
+}
 
-function insertarGarantia($codigo,$nombre,$reflocales,$refproductos,$email,$fecharegistro,$fechacompra,$observaciones,$telefono) {
+
+function insertarGarantia($codigo,$nombre,$reflocales,$refproductos,$email,$fecharegistro,$fechacompra,$observaciones,$telefono,$nroserie) {
 
 	$error = '';
 	if ($nombre == '') {
-		$error .= '* Es obligatorio ingresar el Nombre. <br>';
+		$error .= '<li>Es obligatorio ingresar el Nombre. </li>';
 	}
 
 	if ($email == '') {
-		$error .= '* Es obligatorio ingresar el E-Mail. <br>';
+		$error .= '<li>Es obligatorio ingresar el E-Mail. </li>';
+	}
+
+	if ($this->comprobar_email($email) == 0) {
+		$error .= '<li>El campo E-Mail es invalido. </li>';
+	}
+
+	if ($nroserie == '') {
+		$error .= '<li>Es obligatorio ingresar el Nro de Serie. </li>';
 	}
 
 	if (($reflocales == '') || ($reflocales == '0')) {
-		$error .= '* Es obligatorio ingresar el lugar de compra. <br>';
+		$error .= '<li>Es obligatorio ingresar el lugar de compra. </li>';
 	}
 
 	if (($refproductos == '') || ($refproductos == '0')) {
-		$error .= '* Es obligatorio ingresar un modelo. <br>';
+		$error .= '<li>Es obligatorio ingresar un modelo. </li>';
 	}
 
 
-	$sql = "insert into dbgarantia(idgarantia,codigo,nombre,reflocales,refproductos,email,fecharegistro,fechacompra,observaciones,telefono)
-values ('','".utf8_decode($codigo)."','".utf8_decode($nombre)."',".$reflocales.",".$refproductos.",'".utf8_decode($email)."','".utf8_decode($fecharegistro)."','".utf8_decode($fechacompra)."','".utf8_decode($observaciones)."','".utf8_decode($telefono)."')";
+	$sql = "insert into dbgarantia(idgarantia,codigo,nombre,reflocales,refproductos,email,fecharegistro,fechacompra,observaciones,telefono,nroserie)
+values ('','".utf8_decode($codigo)."','".utf8_decode($nombre)."',".$reflocales.",".$refproductos.",'".utf8_decode($email)."','".utf8_decode($fecharegistro)."','".utf8_decode($fechacompra)."','".utf8_decode($observaciones)."','".utf8_decode($telefono)."','".utf8_decode($nroserie)."')";
 	
 	if ($error == '') {
 		$res = $this->query($sql,1);
-		$res = '';
+		$res = 'ok***'.$codigo;
+		$this->enviarEmail($email,'Producto Registrado', '<h2>El Producto fue registrado correctamente</h2><h5>Nro de Registro: '.$nroserie.'</h5>');
 	} else {
 		$res = $error;
 	}
@@ -83,10 +119,10 @@ values ('','".utf8_decode($codigo)."','".utf8_decode($nombre)."',".$reflocales."
 }
 
 
-function modificarGarantia($id,$codigo,$nombre,$reflocales,$refproductos,$email,$fecharegistro,$fechacompra,$observaciones,$telefono) {
+function modificarGarantia($id,$codigo,$nombre,$reflocales,$refproductos,$email,$fecharegistro,$fechacompra,$observaciones,$telefono,$nroserie) {
 $sql = "update dbgarantia
 set
-codigo = '".utf8_decode($codigo)."',nombre = '".utf8_decode($nombre)."',reflocales = ".$reflocales.",refproductos = ".$refproductos.",email = '".utf8_decode($email)."',fecharegistro = '".utf8_decode($fecharegistro)."',fechacompra = '".utf8_decode($fechacompra)."',observaciones = '".utf8_decode($observaciones)."',telefono = '".utf8_decode($telefono)."'
+codigo = '".utf8_decode($codigo)."',nombre = '".utf8_decode($nombre)."',reflocales = ".$reflocales.",refproductos = ".$refproductos.",email = '".utf8_decode($email)."',fecharegistro = '".utf8_decode($fecharegistro)."',fechacompra = '".utf8_decode($fechacompra)."',observaciones = '".utf8_decode($observaciones)."',telefono = '".utf8_decode($telefono)."',nroserie = '".utf8_decode($nroserie)."'
 where idgarantia =".$id;
 $res = $this->query($sql,0);
 return $res;
@@ -111,7 +147,8 @@ g.email,
 g.fecharegistro,
 g.fechacompra,
 g.observaciones,
-g.telefono
+g.telefono,
+g.nroserie
 from dbgarantia g
 inner join tblocales loc ON loc.idlocal = g.reflocales
 inner join dbproductos pro ON pro.idproducto = g.refproductos
@@ -140,6 +177,7 @@ loc.nombre as local,
 pro.nombre as producto,
 g.email,
 g.telefono,
+g.nroserie,
 g.fecharegistro,
 g.fechacompra,
 g.observaciones,
@@ -155,7 +193,7 @@ return $res;
 
 
 function traerGarantiaPorId($id) {
-$sql = "select idgarantia,codigo,nombre,reflocales,refproductos,email,fecharegistro,fechacompra,observaciones,telefono from dbgarantia where idgarantia =".$id;
+$sql = "select idgarantia,codigo,nombre,reflocales,refproductos,email,fecharegistro,fechacompra,observaciones,telefono,nroserie from dbgarantia where idgarantia =".$id;
 $res = $this->query($sql,0);
 return $res;
 }
@@ -392,6 +430,33 @@ return $res;
 
 /* Fin */
 /* /* Fin de la Tabla: tblocales*/
+
+
+function enviarEmail($destinatario,$asunto,$cuerpo) {
+
+	
+	# Defina el número de e-mails que desea enviar por periodo. Si es 0, el proceso por lotes
+	# se deshabilita y los mensajes son enviados tan rápido como sea posible.
+	define("MAILQUEUE_BATCH_SIZE",0);
+
+	//para el envío en formato HTML
+	//$headers = "MIME-Version: 1.0\r\n";
+	
+	// Cabecera que especifica que es un HMTL
+	$headers  = 'MIME-Version: 1.0' . "\r\n";
+	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+	
+	//dirección del remitente
+	$headers .= "From: Saupurein Marcos <info@saupureinconsulting.com.ar>\r\n";
+	
+	//ruta del mensaje desde origen a destino
+	$headers .= "Return-path: ".$destinatario."\r\n";
+	
+	//direcciones que recibirán copia oculta
+	$headers .= "Bcc: info@saupureinconsulting.com.ar\r\n";
+	
+	mail($destinatario,$asunto,$cuerpo,$headers); 	
+}
 
 
 

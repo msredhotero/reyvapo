@@ -6,6 +6,36 @@
 	<link rel="stylesheet" href="css/styles.css"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 	<title>Rey Vapo</title>
+
+    <style type="text/css">
+
+        .alert-danger {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-danger ul li {
+            padding-top: 8px;
+        }
+
+        .alert-success ul li {
+            padding-top: 8px;
+        }
+
+        .alert {
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            margin: 10px 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,26 +73,30 @@
         <div class="registrar-producto">
             <h1>REGISTRAR PRODUCTO</h1>
             <p>Completa el siguiente formulario</p>
+            <div class="alert alert-danger">
+                <ul class="lstError">
+                </ul>
+            </div>
             <form>
                <div class="formulario-registro">
                    <div>
-                        <div class="campo"><input name="name" id="name" type="text" placeholder="Nombre" onfocus="if(this.value=='Nombre') { this.value=''; }" onBlur="if(this.value == ''){this.value='Nombre';}" /></div>
-                        <div class="campo"><input name="email" id="email" type="text" placeholder="Email" onfocus="if(this.value=='Email') { this.value=''; }" onBlur="if(this.value == ''){this.value='Email';}" /></div>
-                        <div class="campo"><input name="phone" id="phone" type="text" placeholder="Teléfono" onfocus="if(this.value=='Teléfono') { this.value=''; }" onBlur="if(this.value == ''){this.value='Teléfono';}" /></div>
+                        <div class="campo"><input name="name" id="name" type="text" placeholder="Nombre" /></div>
+                        <div class="campo"><input name="email" id="email" type="text" placeholder="Email"/></div>
+                        <div class="campo"><input name="phone" id="phone" type="text" placeholder="Teléfono"/></div>
                     </div>
                     <div>
-                         <div class="campo"><input name="serie" type="text" value="Nro. de serie del producto" onfocus="if(this.value=='Nro. de serie del producto') { this.value=''; }" onBlur="if(this.value == ''){this.value='Nro. de serie del producto';}" /></div>
+                         <div class="campo"><input name="serie" id="serie" type="text" placeholder="Nro. de serie del producto"/></div>
                         <div class="campo">
-                            <select class="selectForm" name="modelo" id="modelo" type="text" onfocus="if(this.value=='Modelo') { this.value=''; }" onBlur="if(this.value == ''){this.value='Modelo';}">
+                            <select class="selectForm" name="modelo" id="modelo" type="text" >
                             <option value="0">-- Modelo --</option>
                             </select>
                         </div>
                         <div class="campo">
-                            <select class="selectForm" name="lugar" id="lugar" type="text" onfocus="if(this.value=='Lugar de compra') { this.value=''; }" onBlur="if(this.value == ''){this.value='Lugar de compra';}">
+                            <select class="selectForm" name="lugar" id="lugar" type="text">
                             <option value="0">-- Lugar de compra --</option>
                             </select>
                         </div>
-						<div class="campo"><input name="obs" id="obs" type="text" placeholder="Observaciones" onfocus="if(this.value=='Observaciones') { this.value=''; }" onBlur="if(this.value == ''){this.value='Observaciones';}" /></div>
+						<div class="campo"><input name="obs" id="obs" type="text" placeholder="Observaciones"/></div>
                         <div class="boton"><input type="button" value="REGISTRAR" id="btnRegistrar"></div>
                     </div>
                     
@@ -200,6 +234,9 @@
 <script type="text/javascript" src="sistema/js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+
+        $('.alert').hide();
+
         function traerLocales() {
             $.ajax({
 
@@ -263,6 +300,7 @@
         var reflocales      = $('#lugar').val();
         var refproductos    = $('#modelo').val();
         var observaciones   = $('#obs').val();
+        var nroserie        = $('#serie').val();
 
         item['nombre']          = nombre;
         item['email']           = email;
@@ -270,6 +308,7 @@
         item['reflocales']      = reflocales;
         item['refproductos']    = refproductos;
         item['observaciones']   = observaciones;
+        item['nroserie']        = nroserie;
 
         DATA.push(item);
         
@@ -286,16 +325,34 @@
             url : 'sistema/json/cargar_garantia.php',
             processData: false, 
             contentType: false,
+            beforeSend: function(XMLHttpRequest) {
+                $('.alert').hide();
+            },
             success: function(r){
-                alert(r);
-                url = "index.php";
+                if(r.indexOf('ok***') != -1){
+                    $(".alert").removeClass("alert-danger");
+                    $(".alert").addClass("alert-success");
+                    $('.lstError').html('<li><b>Producto Registrado</b>, Nro de Registro: ' + r.substring(5) + '</li>');
+
+                } else {
+                    $(".alert").removeClass("alert-success");
+                    $(".alert").addClass("alert-danger");
+                    $('.lstError').html(r);    
+                }
+                
+
+                $('.alert').show();
+                //alert(r);
+                //url = "index.php";
                 //$(location).attr('href',url);
             }
         });
     }
 
     $('#btnRegistrar').click(function() {
-        registrar();
+
+        registrar();    
+        
     });
 
     });

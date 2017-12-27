@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.10.1
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 26-12-2017 a las 20:45:27
--- Versión del servidor: 5.5.20
--- Versión de PHP: 5.3.10
+-- Tiempo de generación: 27-12-2017 a las 14:58:59
+-- Versión del servidor: 5.5.24-log
+-- Versión de PHP: 5.4.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -37,10 +37,22 @@ CREATE TABLE IF NOT EXISTS `dbgarantia` (
   `fechacompra` date DEFAULT NULL,
   `observaciones` varchar(300) COLLATE utf8_spanish_ci DEFAULT NULL,
   `telefono` varchar(20) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `nroserie` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idgarantia`),
   KEY `fk_garantia_locales_idx` (`reflocales`),
   KEY `fk_garantia_productos_idx` (`refproductos`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=7 ;
+
+--
+-- Volcado de datos para la tabla `dbgarantia`
+--
+
+INSERT INTO `dbgarantia` (`idgarantia`, `codigo`, `nombre`, `reflocales`, `refproductos`, `email`, `fecharegistro`, `fechacompra`, `observaciones`, `telefono`, `nroserie`) VALUES
+(2, 'GAR0000001', 'marcos', 1, 1, 'msredhotero@msn.com', '2017-12-26', '2017-12-26', '', '2216184415', NULL),
+(3, 'GAR0000003', 'asdasdasd', 1, 1, 'msredhotero@msn.com', '2017-12-27', '2017-12-27', '', '45345345', 'Nro. de serie del producto'),
+(4, 'GAR0000004', 'asdasdasd', 1, 1, 'msredhotero@msn.com', '2017-12-27', '2017-12-27', '', '45345345', 'Nro. de serie del producto'),
+(5, 'GAR0000005', 'asdasd', 1, 1, 'asdasd', '2017-12-27', '2017-12-27', '', 'asdasd', 'Nro. de serie del producto'),
+(6, 'GAR0000006', 'asdasdasd', 1, 1, 'asdasdasd@asd.com', '2017-12-27', '2017-12-27', '', '32423423', 'asdasd');
 
 -- --------------------------------------------------------
 
@@ -104,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `predio_menu` (
   `hover` varchar(45) COLLATE utf8_spanish_ci DEFAULT NULL,
   `permiso` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`idmenu`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci AUTO_INCREMENT=29 ;
 
 --
 -- Volcado de datos para la tabla `predio_menu`
@@ -115,7 +127,8 @@ INSERT INTO `predio_menu` (`idmenu`, `url`, `icono`, `nombre`, `Orden`, `hover`,
 (8, '../logout.php', 'icosalir', 'Salir', 30, NULL, 'Administrador'),
 (16, '../usuarios/', 'icojugadores', 'Usuarios', 13, NULL, 'Administrador'),
 (26, '../productos/', 'icoventas', 'Productos', 1, NULL, 'Administrador'),
-(27, '../locales/', 'icolocalizacion', 'Locales', 2, NULL, 'Administrador');
+(27, '../locales/', 'icolocalizacion', 'Locales', 2, NULL, 'Administrador'),
+(28, '../garantias/', 'icotorneos', 'Garantias', 3, NULL, 'Administrador');
 
 -- --------------------------------------------------------
 

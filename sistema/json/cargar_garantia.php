@@ -23,12 +23,12 @@ $json = json_decode($json);
 
 $codigo = $serviciosReferencias->generarCodigoGarantia();
 
-$refGarantia = $serviciosReferencias->insertarGarantia($codigo,$json[0]->nombre,$json[0]->reflocales,$json[0]->refproductos,$json[0]->email,date('Y-m-d'),date('Y-m-d'),$json[0]->observaciones,$json[0]->telefono);
+$refGarantia = $serviciosReferencias->insertarGarantia($codigo,$json[0]->nombre,$json[0]->reflocales,$json[0]->refproductos,$json[0]->email,date('Y-m-d'),date('Y-m-d'),$json[0]->observaciones,$json[0]->telefono,$json[0]->nroserie);
 
 if ($refGarantia == '') {
 	echo 'Se registro el producto correctamente!!.';
 } else {
-	echo 'Error: '.$refGarantia;
+	echo $refGarantia;
 }
 
 ?>
