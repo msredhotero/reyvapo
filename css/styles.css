@@ -1,0 +1,606 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon.eot?943w2c');
+  src:  url('../fonts/icomoon.eot?943w2c#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?943w2c') format('truetype'),
+    url('../fonts/icomoon.woff?943w2c') format('woff'),
+    url('../fonts/icomoon.svg?943w2c#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-menu:before {
+  content: "\e903";
+}
+.icon-social-facebook:before {
+  content: "\e901";
+}
+.icon-social-twitter:before {
+  content: "\e902";
+}
+.icon-google-plus:before {
+  content: "\e904";
+}
+
+
+header, nav, section, article, aside, figure, footer{
+	display:block;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    border: none;
+}
+a img{
+	border:none;
+}
+body{
+	font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+p{
+	font-size:18px;
+	color:#000;
+	margin:0 0 10px 0;
+}
+h1{
+	font-size:36px;
+	color:#000;
+	margin:0 0 40px 0;
+    text-transform: uppercase;
+}
+
+h2{
+	font-size:22px;
+	color:#000;
+	margin:0 0 30px 0;
+    text-transform: uppercase;
+}
+
+.contenedor {
+    max-width: 1170px;
+    position: relative;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+#cabecera .banner img {
+    margin: 0;
+    padding: 0;
+    border: none;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+#cabecera .menu {
+    background-color: #000;
+    text-align: center;
+    width: 100%;
+}
+
+
+#cabecera .menu ul {
+    margin: 0;
+    padding: 10px 0;
+    list-style: none;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+#cabecera .menu ul li {
+    margin: 0;
+    padding: 0 10px;
+    display: inline;
+}
+
+
+#cabecera .menu ul li a {
+   text-decoration: none;
+    color: #fff;
+}
+
+#cabecera .menu ul li a:hover {
+    color: #ffa200;
+}
+
+#menu-mobile {
+  width: 100%;
+  background-color: #000;
+  width: 100%;
+  display: none;
+  position: relative;
+    height: 35px;
+}
+
+#burguer-button {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  color: white;
+  z-index: 3;
+  font-size: 25px;
+}
+
+#intro {
+    display: flex;
+    flex-direction: row;
+}
+
+#intro .porque-comprar {
+    width: 50%;
+    padding-top: 60px;
+}
+
+#intro .porque-comprar h1 {
+    text-align: center;
+}
+
+#intro .porque-comprar ul {
+    margin: 0 auto;
+    width: 80%;
+    padding: 0;
+    margin-bottom: 60px;
+}
+
+#intro .porque-comprar ul li {
+    margin:0 0 20px 0;
+    padding: 0;
+    list-style-image: url(../images/bull.png);
+}
+
+#intro .registrar-producto {
+    width: 50%;
+    background-color: #f4f4f4;
+    padding: 60px 0;
+}
+
+#intro .registrar-producto h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+#intro .registrar-producto p {
+   text-align: center;
+    font-weight: 600;
+}
+
+#intro .registrar-producto .formulario-registro {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#intro .registrar-producto .formulario-registro div {
+    width: 47%;
+}
+
+#intro .registrar-producto .formulario-registro .campo {
+    width: 100%;
+}
+#intro .registrar-producto .formulario-registro .campo {
+    width: 100%;
+}
+
+
+#intro .registrar-producto .formulario-registro .campo input {
+    width: 100%;
+    display: block;
+    border: solid 2px #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #8c8c8c;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 15px;
+}
+
+#intro .registrar-producto .formulario-registro .boton {
+    width: 100%;
+}
+
+#intro .registrar-producto .formulario-registro .boton input {
+    width: 100%;
+    display: block;
+    border: none;
+    background-color: #ffa200;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 25px;
+}
+
+.selectForm {
+    width: 100%;
+    display: block;
+    border: 2px solid #CCC;
+    background-color: #FFF;
+    padding: 6px;
+    box-sizing: border-box;
+    font-size: 12px;
+    color: #999;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+
+#video-elegir {
+    width: 100%;
+    background-image: url(../images/bg-smoke.jpg);
+	background-color: #333;
+	background-size: cover;
+	background-position: center;
+    padding: 60px 0;
+}
+
+#video-elegir h1 {
+   color: #fff;
+    text-align: center;
+}
+
+#video-elegir .video-contenedor {
+   width: 100%;
+    margin: 0 auto;
+}
+
+#video-elegir .video-contenedor-src {
+    width: 760px;
+    height: 515px;
+    margin: 0 auto;
+    display: block;
+}
+
+#productos-intro {
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 60px 0;
+    margin-bottom: 60px;
+}
+
+#fila-productos {
+    display:flex;
+    flex-direction: row;
+}
+
+#fila-productos .block-producto {
+    text-align: center;
+    width: 25%;
+    margin-bottom:60px;
+}
+
+#fila-productos .block-producto img {
+   display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+#fila-productos .block-producto a {
+   text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    background-color: #ffa200;
+    padding: 8px 25px;
+}
+
+#fila-productos .block-producto a:hover {
+    background-color: #fece00;
+}
+
+#servicio-tecnico {
+	background-image:   -webkit-linear-gradient(left, #fece00 0%, #ffa200 100%);
+    text-align: center;
+    padding: 60px 0;
+    padding-bottom: 80px;
+}
+
+#servicio-tecnico p {
+	margin-bottom: 60px;
+}
+
+#servicio-tecnico a {
+	text-decoration: none;
+    color: #000;
+    font-weight: 600;
+    border: solid 2px #000;
+    padding: 12px 25px;
+    text-transform: uppercase;
+}
+
+#servicio-tecnico a:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+}
+
+footer .contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+footer ul li {
+    display: inline;
+}
+
+footer ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+footer ul li a:hover {
+    color: #666;
+}
+
+footer .menu-footer span {
+    font-size: 14px;
+    color: #666;
+}
+
+footer .phone {
+	font-size: 27px;
+    font-weight: 800;
+    background-image: url(../images/whatsapp-icon.png);
+    background-repeat: no-repeat;
+    padding-left: 38px;
+}
+
+footer .social a {
+	color: #fff;
+	text-decoration: none;
+	font-size: 42px;
+	margin: 0 10px;
+}
+
+footer .social a:hover {
+	color: #666;
+}
+
+/*Pagina productos*/
+
+#titulo-productos {
+    background-color: #f4f4f4;
+    padding: 60px 0;
+    margin-bottom: 60px;
+}
+
+#titulo-productos .contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#titulo-productos .contenedor h1 {
+    margin-bottom: 20px;
+}
+
+#descripcion-producto .contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 60px;
+}
+
+#descripcion-producto .contenedor div {
+    width: 47%;
+}
+
+
+#descripcion-producto .contenedor div p img {
+    margin: 0 auto;
+    display: block;
+}
+
+#descripcion-producto .contenedor ul {
+   list-style: none;
+    margin: 0 0 40px 0;
+    padding: 0;
+}
+
+
+/***    DISEÑO PARA TABLETAS           ****/
+@media only screen and (max-width:768px){
+	
+    #menu-mobile {
+        display: block;
+    }
+    
+    #burguer-button {
+		z-index: 3;
+	}
+    
+    .menu {
+		font-size: 1.3em;
+		position: fixed;
+		top: 0;
+		left: -100%;
+		z-index: 2;
+		background: rgba(20, 38, 78, .9);
+		bottom: 0;
+		right: 0;
+		display: flex;
+		width: 100%;
+		transition: .3s;
+	}
+	
+	.menu ul {
+		margin-top: 25px;
+		padding: 0 0 0 20px;
+        text-align: left;
+	}
+
+	.menu ul li {
+		display: block;
+		padding: 0;
+		margin: 0 0 40px 0;
+	}
+
+	.menu ul li a {
+		color: #fff;
+		text-decoration: none;
+		text-transform: uppercase;
+		margin: 0;
+        display: block;
+        margin-left: 20px;
+		
+	}
+
+	.menu ul li a:hover {
+		color: #22b8cb;
+		border-bottom: none;
+		border-bottom-style: none;
+	}
+	
+	.menu.active {
+    left: 0;
+  }
+    
+    h1 {
+        font-size: 30px;
+    }
+    
+    #intro {
+        display: block;
+    }
+    
+    #intro .porque-comprar, #intro .registrar-producto {
+        width: 100%;
+        padding-top: 40px;
+    }
+    
+    #intro .registrar-producto .formulario-registro {
+        margin: 0 auto;
+        width: 80%;
+        margin-top: 40px;
+        display: block;
+    }
+    
+    #intro .registrar-producto .formulario-registro div {
+        width: 100%;
+    }
+    
+    #video-elegir .video-contenedor {
+       width: 90%;
+        margin: 0 auto;
+    }
+
+    #video-elegir .video-contenedor-src {
+        width: 100%;
+        height: 300px;
+    }
+    
+    #fila-productos {
+        display:block;
+    }
+    
+    #fila-productos .block-producto {
+        width: 100%;
+    }
+    
+    footer .contenedor {
+        display: block;
+        text-align: center;
+    }
+    
+    footer .contenedor .phone {
+        width: 180px;
+        margin: 20px auto;
+    }
+    
+    footer .menu-footer ul {
+       margin: 15px 0;
+    }
+    
+    /*Pagina productos*/
+
+
+    #titulo-productos .contenedor {
+        display: block;
+        text-align: center;
+    }
+    
+    #titulo-productos .contenedor p {
+       margin-bottom: 20px;
+    }
+    
+    #descripcion-producto .contenedor {
+        display: block;
+    }
+    #descripcion-producto .contenedor div {
+        width: 100%;
+    }
+    
+    #descripcion-producto .contenedor p {
+        margin-bottom: 40px;
+    }
+}
+
+/***    DISEÑO PARA MOVILES 480        ****/
+@media only screen and (max-width:480px){
+	h1 {
+        font-size: 26px;
+    }
+    
+     #video-elegir .video-contenedor-src {
+        width: 100%;
+        height: 200px;
+    }
+}
+
+/***    DISEÑO PARA MOVILES 320        ****/
+@media only screen and (max-width:320px){
+	h1 {
+        font-size: 23px;
+    }
+}
