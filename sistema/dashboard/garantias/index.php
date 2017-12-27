@@ -47,8 +47,8 @@ $tituloWeb = "Gestión: Garantias";
 /////////////////////// Opciones para la creacion del formulario  /////////////////////
 $tabla 			= "dbgarantia";
 
-$lblCambio	 	= array("reflocales","refproductos","fecharegistro","fechacompra");
-$lblreemplazo	= array("Locales","Productos","Fecha Registro","Fecha Compra");
+$lblCambio	 	= array("reflocales","refproductos","fecharegistro","fechacompra","nroserie");
+$lblreemplazo	= array("Locales","Productos","Fecha Registro","Fecha Compra","Nro Serie");
 
 
 $resLocal	= $serviciosReferencias->traerLocales();
@@ -71,6 +71,7 @@ $cabeceras 		= "	<th>Codigo</th>
 					<th>Producto</th>
 					<th>E-Mail</th>
 					<th>Telefono</th>
+					<th>Nro Serie</th>
 					<th>Fecha Reg.</th>
 					<th>Fecha Compra</th>
 					<th>Obs.</th>";
@@ -82,7 +83,7 @@ $cabeceras 		= "	<th>Codigo</th>
 
 $formulario 	= $serviciosFunciones->camposTabla($insertar ,$tabla,$lblCambio,$lblreemplazo,$refdescripcion,$refCampo);
 
-$lstCargados 	= $serviciosFunciones->camposTablaView($cabeceras,$serviciosReferencias->traerGarantiaTodas(),9);
+$lstCargados 	= $serviciosFunciones->camposTablaView($cabeceras,$serviciosReferencias->traerGarantiaTodas(),10);
 
 
 

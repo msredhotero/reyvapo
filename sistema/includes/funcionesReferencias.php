@@ -447,13 +447,13 @@ function enviarEmail($destinatario,$asunto,$cuerpo) {
 	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 	
 	//dirección del remitente
-	$headers .= "From: Saupurein Marcos <info@saupureinconsulting.com.ar>\r\n";
+	$headers .= "From: Rey Vapo <ventas@reyvapo.com>\r\n";
 	
 	//ruta del mensaje desde origen a destino
 	$headers .= "Return-path: ".$destinatario."\r\n";
 	
 	//direcciones que recibirán copia oculta
-	$headers .= "Bcc: info@saupureinconsulting.com.ar\r\n";
+	$headers .= "Bcc: ventas@reyvapo.com\r\n";
 	
 	mail($destinatario,$asunto,$cuerpo,$headers); 	
 }

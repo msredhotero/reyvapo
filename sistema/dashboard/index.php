@@ -39,6 +39,7 @@ $cabeceras 		= "	<th>Codigo</th>
 					<th>Producto</th>
 					<th>E-Mail</th>
 					<th>Telefono</th>
+					<th>Nro Serie</th>
 					<th>Fecha Reg.</th>
 					<th>Fecha Compra</th>
 					<th>Obs.</th>";
@@ -46,7 +47,7 @@ $cabeceras 		= "	<th>Codigo</th>
 
 //////////////////////////////////////////////  FIN de los opciones //////////////////////////
 
-$lstGarantias 	= $serviciosFunciones->camposTablaView($cabeceras,$serviciosReferencias->traerGarantiaTodas(),9);
+$lstGarantias 	= $serviciosFunciones->camposTablaView($cabeceras,$serviciosReferencias->traerGarantiaTodas(),10);
 
 
 $resClientes	=	$serviciosReferencias->traerProductosCantidad();
